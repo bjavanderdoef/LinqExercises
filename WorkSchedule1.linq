@@ -1,7 +1,6 @@
 <Query Kind="Expression">
   <Connection>
     <ID>1ca4c2aa-2d76-4fd3-81eb-94d8b91ffbc4</ID>
-    <Persist>true</Persist>
     <Server>.</Server>
     <Database>WorkSchedule</Database>
     <ShowServer>true</ShowServer>
@@ -22,15 +21,3 @@ select new
 		YearsExperience = empSkills.YearsOfExperience,
 	}
 }
-
-//from item in EmployeeSkills
-//select new
-//{
-//	Description = item.Skills.Description,
-//	Employees = from select new
-//				{
-//					Name = item.Employee.FirstName + " " + item.Employee.LastName,
-//					Level = item.Level,
-//					YearsExperience = item.YearsOfExperience
-//				}
-//}

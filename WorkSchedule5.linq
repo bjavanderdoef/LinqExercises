@@ -1,3 +1,16 @@
-<Query Kind="Expression" />
+<Query Kind="Expression">
+  <Connection>
+    <ID>1ca4c2aa-2d76-4fd3-81eb-94d8b91ffbc4</ID>
+    <Server>.</Server>
+    <Database>WorkSchedule</Database>
+    <ShowServer>true</ShowServer>
+  </Connection>
+</Query>
 
 // List all the employees with the most years of experience.
+from person in EmployeeSkills
+where person.YearsOfExperience == EmployeeSkills.Max(year => year.YearsOfExperience)
+select new
+{
+	Name = person.Employee.FirstName + " " + person.Employee.LastName,			
+}
