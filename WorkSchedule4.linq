@@ -18,6 +18,7 @@
 //{
 //	
 //}
+where shift.PlacementContract.Location.Name.Contains("NAIT") create temp variable
 
 from shift in Shifts
 where shift.PlacementContractID == (from contract in PlacementContracts where contract.Location.Name.Contains("NAIT") select contract.PlacementContractID).Single()
