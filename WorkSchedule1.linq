@@ -10,9 +10,6 @@
 // Show all skills requiring a ticket and which employees have those skills. Include all the data as seen in the following image.
 from item in Skills
 where item.RequiresTicket == true
-<<<<<<< HEAD
-select item
-=======
 orderby item.Description
 select new
 {
@@ -24,4 +21,3 @@ select new
 		YearsExperience = empSkills.YearsOfExperience,
 	}
 }
->>>>>>> origin/master
