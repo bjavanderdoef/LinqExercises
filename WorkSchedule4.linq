@@ -1,6 +1,6 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>f63d7f1b-c0cd-4efb-a857-b4d18946fd7f</ID>
+    <ID>1ca4c2aa-2d76-4fd3-81eb-94d8b91ffbc4</ID>
     <Server>.</Server>
     <Database>WorkSchedule</Database>
     <ShowServer>true</ShowServer>
@@ -11,11 +11,25 @@
 //
 // select DayOfWeek and EmployeesNeeded (SUM of NumberOfEmployees per DayOfWeek) from Shifts
 //
-from shift in Shifts
-where shift.PlacementContract.Location.Name.Contains("NAIT")
-group shift by shift.DayOfWeek into tempData
-select new 
+//from shift in Shifts
+//where shift.PlacementContract.Location.Name.Contains("NAIT")
+//group shift by shift.DayOfWeek into tempData
+//select new 
+//{
+//	Day = tempData.Key,
+//	EmployeesNeeded = tempData.Sum( x => x.NumberOfEmployees)
+//}
+
+from data in Shifts
+where data.PlacementContract.Location.Name.Contains("NAIT")
+group data by data.DayOfWeek into result
+select new
 {
-	Day = tempData.Key,
-	EmployeesNeeded = tempData.Sum( x => x.NumberOfEmployees)
+	//Day = result.Key,
+	DayOfWeek = result.Key == 1 ? "Mon"
+			  : result.Key == 2 ? "Tue"
+			  : result.Key == 3 ? "Wed"
+			  : result.Key == 4 ? "Thu"
+			  : "Fri",
+	EmployeesNeeded = result.Sum(r => r.NumberOfEmployees)
 }

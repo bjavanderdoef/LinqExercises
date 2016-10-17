@@ -14,10 +14,12 @@ orderby item.Description
 select new
 {
 	Description = item.Description,
-	Employees = from empSkills in item.EmployeeSkills select new
-	{
-		Name = empSkills.Employee.FirstName + " " + empSkills.Employee.LastName,
-		Level = empSkills.Level,
-		YearsExperience = empSkills.YearsOfExperience,
-	}
+	Employees = from empSkills in item.EmployeeSkills
+				orderby empSkills.YearsOfExperience descending
+				select new
+				{
+					Name = empSkills.Employee.FirstName + " " + empSkills.Employee.LastName,
+					Level = empSkills.Level,
+					YearsExperience = empSkills.YearsOfExperience,
+				}
 }
